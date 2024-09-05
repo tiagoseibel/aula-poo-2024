@@ -1,1 +1,6 @@
-<p>tela-inicial works!</p>
+{{texto}}
+<ul>
+    <li *ngFor="let item of extrato">
+        {{item.descricao}} - {{item.valor}}
+    </li>
+</ul>
