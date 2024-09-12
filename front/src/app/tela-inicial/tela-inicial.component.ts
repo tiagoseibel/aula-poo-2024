@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Transacao } from '../../model/transacao';
 import { CommonModule } from '@angular/common';
+import { TransacaoService } from '../transacao.service';
 
 @Component({
   selector: 'app-tela-inicial',
@@ -13,20 +14,16 @@ export class TelaInicialComponent implements OnInit{
   extrato: Transacao[] = [];
   texto: string = "EXTRATO DO CLIENTE"
 
-  constructor() {
+  constructor(
+    private service: TransacaoService
+  ) {
 
   }
 
   ngOnInit(): void {
-      let tran: Transacao = {
-        data: new Date(),
-        descricao: "PIX 0001",
-        valor: 10.00,
-        operacao: "C",
-        numero: 1
-      };
-      this.extrato.push(tran);
-      
+    this.service.buscarExtrato().subscribe( (item: Transacao) => {
+      this.extrato.push(item);
+    })
   }
 
 }
