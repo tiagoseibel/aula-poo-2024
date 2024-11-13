@@ -14,4 +14,6 @@ public interface UsuarioRepository
 
     @Query("select u from Usuario u where u.senha is null")
     List<Usuario> buscarSemSenha();
+
+    Usuario findByLogin(String login);
 }
