@@ -25,8 +25,9 @@ public class UsuarioController {
     private UsuarioRepository repository;
 
     @GetMapping
-    public List<Usuario> buscarTodos() {
-        return repository.findAll();       
+    public ResponseEntity<List<Usuario>> buscarTodos() {
+        List<Usuario> userList = repository.findAll();
+        return ResponseEntity.ok().body(userList);       
     }
 
     @GetMapping("/{id}")
@@ -46,9 +47,9 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") Integer id) {
+    public ResponseEntity delete(@PathVariable("id") Integer id) {
         repository.deleteById(id);
-        return "OK";
+        return ResponseEntity.ok().build();
     }
 
 }

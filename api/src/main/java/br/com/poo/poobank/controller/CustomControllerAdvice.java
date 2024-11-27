@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class CustomControllerAdvice extends ResponseEntityExceptionHandler {
     
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> responseException(RuntimeException re, WebRequest wr) {
-        return handleExceptionInternal(re, "Mensagem customizada", new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, wr);
+    public ResponseEntity<?> genericExceptionHandler(RuntimeException re, WebRequest wr) {
+        return handleExceptionInternal(re, "Erro ao processar a requisição.", new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, wr);
     }
 }
