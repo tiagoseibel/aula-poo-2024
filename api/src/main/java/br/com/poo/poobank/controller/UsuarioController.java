@@ -1,10 +1,13 @@
 package br.com.poo.poobank.controller;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +22,7 @@ import jakarta.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("/usuario")
+@CrossOrigin
 public class UsuarioController {
 
     @Autowired
@@ -44,6 +48,18 @@ public class UsuarioController {
     public ResponseEntity<Usuario> save(@RequestBody Usuario usuario) {
         Usuario novoUsuario = repository.save(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoUsuario);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Boolean> login(@RequestBody Usuario u) {
+        Optional<Usuario> logado = repository
+            .findByLoginAndSenha(u.getLogin(), u.getSenha());
+
+        if (logado.isPresent()) {
+            return ResponseEntity.ok().body(true);
+        } else {
+            return ResponseEntity.ok().body(false);
+        }
     }
 
     @DeleteMapping("/{id}")
