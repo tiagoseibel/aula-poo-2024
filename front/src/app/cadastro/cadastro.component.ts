@@ -15,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 export class CadastroComponent {
 
   public dadosCadastrais = new Correntista();
+  public titulo: string = 'Cadastro de Clientes';
+  public cpf = '00000000000';
 
   constructor(
     private service: CorrentistaService

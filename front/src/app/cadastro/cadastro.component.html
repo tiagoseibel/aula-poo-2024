@@ -1,4 +1,10 @@
-<p>Faça seu cadastro</p>
-<input pInputText type="text" [(ngModel)]="dadosCadastrais.id">
-<input pInputText type="text" [(ngModel)]="dadosCadastrais.nome">
+<p>{{titulo}}</p>
+<p>
+    Nome: <input pInputText type="text" [(ngModel)]="dadosCadastrais.nome">
+</p>
+<p>
+    CPF: <input pInputText type="text" [(ngModel)]="dadosCadastrais.cpf">
+</p>
+
 <button pButton (click)="clickSalvar()">Cadastrar</button>
+<br>
